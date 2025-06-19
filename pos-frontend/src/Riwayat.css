@@ -1,73 +1,7 @@
 /* src/Riwayat.css */
 
 .riwayat-page {
-  padding: 20px;
-}
-
-.tab-container {
-  display: flex;
-  margin-bottom: 20px;
-  background-color: #e9ecef;
-  border-radius: 8px;
-  padding: 5px;
-}
-
-.tab-btn {
-  flex: 1;
-  padding: 10px;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: 500;
-  color: #6c757d;
-  border-radius: 6px;
-  transition: all 0.2s ease-in-out;
-}
-
-.tab-btn.active {
-  background-color: #ffffff;
-  color: #0d6efd;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.tab-content {
-  /* Konten akan ditampilkan di sini */
-}
-
-.date-group {
-  margin-bottom: 25px;
-}
-
-.date-group h3 {
-  font-size: 0.9rem;
-  color: #6c757d;
-  margin-bottom: 10px;
-  border-bottom: 1px solid #dee2e6;
-  padding-bottom: 5px;
-}
-
-.transaction-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px;
-  background-color: #fff;
-  border-radius: 6px;
-  margin-bottom: 8px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-}
-
-.amount {
-  font-weight: bold;
-}
-
-.amount.income {
-  color: #198754; /* Hijau untuk pemasukan */
-}
-
-.amount.expense {
-  color: #dc3545; /* Merah untuk pengeluaran */
+  position: relative;
 }
 
 .riwayat-header {
@@ -78,18 +12,135 @@
 }
 
 .tab-container {
-  display: inline-flex; /* Ubah menjadi inline-flex */
-  background-color: #e9ecef;
+  display: inline-flex;
+  background-color: var(--secondary-bg, #e8e8e8);
   border-radius: 8px;
   padding: 5px;
 }
 
-.btn-add-expense {
-  background-color: #198754;
-  color: white;
+.tab-btn {
+  flex: 1;
+  padding: 10px 20px;
   border: none;
-  padding: 10px 15px;
-  border-radius: 6px;
+  background-color: transparent;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-secondary, #666);
+  border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+}
+
+.tab-btn.active {
+  background-color: var(--card-bg, #fff);
+  color: var(--text-primary, #000);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* === GAYA UNTUK ACCORDION === */
+.date-group-accordion {
+  background-color: var(--secondary-bg, #e8e8e8);
+  border-radius: 10px;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 15px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.accordion-header h3 {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--text-primary, #000);
+  margin: 0;
+}
+
+.accordion-header img {
+  width: 20px;
+  height: 20px;
+}
+
+.accordion-body {
+  padding: 0 15px 15px 15px;
+}
+
+.summary-section {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+  font-size: 14px;
+}
+
+/* Mengubah warna teks Sisa Saldo agar standar */
+.summary-row span:first-child {
+  color: var(--text-secondary, #666);
+}
+.summary-row span:last-child {
+  font-weight: bold;
+}
+
+
+.transaction-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  font-size: 14px;
+  color: var(--text-secondary, #666);
+}
+
+.amount {
+  font-weight: bold;
+}
+
+.amount.income {
+  color: var(--brand-green, #198754);
+}
+
+.amount.expense {
+  color: var(--brand-red, #dc3545);
+}
+
+/* === GAYA UNTUK FLOATING ACTION BUTTON (FAB) === */
+.btn-add-expense-fab {
+  position: fixed;
+  bottom: 90px; /* Di atas navbar */
+  right: 25px;
+  width: 50px;
+  height: 50px;
+  background-color: var(--dark-color, #000);
+  border-radius: 50%; /* Membuatnya bulat */
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  z-index: 100;
+  transition: transform 0.2s;
+}
+
+.btn-add-expense-fab:hover {
+  transform: scale(1.05);
+}
+
+.btn-add-expense-fab img {
+  width: 24px;
+  height: 24px;
+  filter: invert(1); /* Membuat ikon SVG menjadi putih */
 }
