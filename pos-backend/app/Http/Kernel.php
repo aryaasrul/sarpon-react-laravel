@@ -17,6 +17,8 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        // Tambahkan middleware CORS secara global
+        \Illuminate\Http\Middleware\HandleCors::class,
     ];
 
     /**
@@ -35,9 +37,8 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-            // === PASTIKAN BARIS INI ADA DAN TIDAK DI-KOMENTAR ===
+            // PASTIKAN BARIS INI ADA DAN AKTIF
             \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-            // ======================================================
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],

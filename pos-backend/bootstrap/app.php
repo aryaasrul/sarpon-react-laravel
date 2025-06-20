@@ -11,9 +11,14 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
     )
-    ->withMiddleware(function (Middleware $middleware): void {
-        //
+    ->withMiddleware(function (Middleware $middleware) {
+        // Ini adalah cara baru untuk mengecualikan rute dari CSRF
+        $middleware->validateCsrfTokens(except: [
+            'login',    // Kecualikan rute login
+            'logout',   // Kecualikan rute logout
+            'api/*',    // Kecualikan semua rute API
+        ]);
     })
-    ->withExceptions(function (Exceptions $exceptions): void {
+    ->withExceptions(function (Exceptions $exceptions) {
         //
     })->create();
