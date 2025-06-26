@@ -1,0 +1,54 @@
+services:
+  - type: web
+    name: sarpon-api
+    env: php
+    rootDir: pos-backend
+    buildCommand: "composer install"
+    startCommand: "php artisan serve --host 0.0.0.0 --port $PORT"
+    plan: free
+    envVars:
+      - key: APP_URL
+        generateValue: true
+      - key: APP_KEY
+        # Jalankan 'php artisan key:generate --show' di lokal
+        # dan paste hasilnya di sini
+        value: base64:9vkgBZYtxg4VDiKxBmiLhNv8BiiW0uBV8IjCQysCKE4=
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_HOST
+        fromService:
+          type: psql
+          name: sarpon-db
+          property: host
+      - key: DB_PORT
+        fromService:
+          type: psql
+          name: sarpon-db
+          property: port
+      - key: DB_DATABASE
+        fromService:
+          type: psql
+          name: sarpon-db
+          property: database
+      - key: DB_USERNAME
+        fromService:
+          type: psql
+          name: sarpon-db
+          property: user
+      - key: DB_PASSWORD
+        fromService:
+          type: psql
+          name: sarpon-db
+          property: password
+      - key: SANCTUM_STATEFUL_DOMAINS
+        # Ganti dengan URL Vercel Anda nanti
+        value: sarpon-react-laravel.vercel.app
+      - key: SESSION_DOMAIN
+        # Ganti dengan URL Vercel Anda nanti
+        value: sarpon-react-laravel.vercel.app
+
+databases:
+  - name: sarpon-db
+    databaseName: sarpon_db
+    user: sarpon_user
+    plan: free
