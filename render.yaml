@@ -1,7 +1,7 @@
 services:
   - type: web
     name: sarpon-api
-    env: php
+    runtime: php
     rootDir: pos-backend
     buildCommand: "composer install"
     startCommand: "php artisan serve --host 0.0.0.0 --port $PORT"
