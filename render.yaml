@@ -7,48 +7,28 @@ services:
     startCommand: "php artisan serve --host 0.0.0.0 --port $PORT"
     plan: free
     envVars:
+      # -- Konfigurasi Aplikasi Laravel --
       - key: APP_URL
         generateValue: true
       - key: APP_KEY
-        # Jalankan 'php artisan key:generate --show' di lokal
-        # dan paste hasilnya di sini
         value: base64:9vkgBZYtxg4VDiKxBmiLhNv8BiiW0uBV8IjCQysCKE4=
+
+      # -- Koneksi ke Database Supabase --
       - key: DB_CONNECTION
         value: pgsql
       - key: DB_HOST
-        fromService:
-          type: psql
-          name: sarpon-db
-          property: host
+        value: db.rnohilsczuqdcsquhpmp.supabase.co
       - key: DB_PORT
-        fromService:
-          type: psql
-          name: sarpon-db
-          property: port
+        value: 5432
       - key: DB_DATABASE
-        fromService:
-          type: psql
-          name: sarpon-db
-          property: database
+        value: postgres
       - key: DB_USERNAME
-        fromService:
-          type: psql
-          name: sarpon-db
-          property: user
+        value: postgres
       - key: DB_PASSWORD
-        fromService:
-          type: psql
-          name: sarpon-db
-          property: password
+        value: Tribadrun3
+
+      # -- Konfigurasi untuk Login (CORS) --
       - key: SANCTUM_STATEFUL_DOMAINS
-        # Ganti dengan URL Vercel Anda nanti
         value: sarpon-react-laravel.vercel.app
       - key: SESSION_DOMAIN
-        # Ganti dengan URL Vercel Anda nanti
-        value: sarpon-react-laravel.vercel.app
-
-databases:
-  - name: sarpon-db
-    databaseName: sarpon_db
-    user: sarpon_user
-    plan: free
+        value: .vercel.app
